@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Name>StargateWOTC</Name>
+    <Description>SG-1 development loader probe. Gate expeditions are not implemented yet.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>StargateWOTC</AssemblyName>
+    <RootNamespace>StargateWOTC</RootNamespace>
+    <ProjectGuid>{F59360DE-22AD-4A38-AC5E-69745F93B0A5}</ProjectGuid>
+    <Guid>F59360DE-22AD-4A38-AC5E-69745F93B0A5</Guid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config/" />
+    <Folder Include="Src/" />
+    <Folder Include="Src/StargateWOTC/" />
+    <Folder Include="Src/StargateWOTC/Classes/" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config/XComEditor.ini" />
+    <Content Include="Config/XComEngine.ini" />
+    <Content Include="Config/XComGame.ini" />
+    <Content Include="Src/StargateWOTC/Classes/X2DownloadableContentInfo_StargateWOTC.uc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)/XCOM2.targets" />
+</Project>

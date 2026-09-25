@@ -1,0 +1,9 @@
+bin/
+obj/
+BuildCache/
+dist/
+__pycache__/
+*.pyc
+environment.local.json
+GamePaths.props
+*.user

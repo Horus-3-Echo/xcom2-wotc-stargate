@@ -1,0 +1,13 @@
+{
+  "project": "xcom2-wotc-stargate",
+  "game": "XCOM 2: War of the Chosen",
+  "game_version": null,
+  "distribution": null,
+  "branch": null,
+  "operating_system": null,
+  "sdk_version": null,
+  "game_install_path": null,
+  "sdk_install_path": null,
+  "game_test_available": false,
+  "note": "Neznámé hodnoty ponechat null, neodhadovat."
+}
