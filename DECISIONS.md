@@ -15,9 +15,17 @@
   `Horus-3-Echo/xcom2-wotc-stargate`, větev `main`, jako jedinou pracovní autoritu.
   Toto nahrazuje dočasné W-D002. Přenést poslední ZIP v0; starý ZIP dále
   nerozvíjet. Zachovat oddělení projektů a zadání v1.
-
 - 2026-09-25 / W-D009: zachovat původní SDK import a platformu XCOM 2;
   reference WotC formát potvrzuje, ale její vlastní X2ModBuildCommon není
   původní toolchain. Bez místního SDK nepřidávat domnělé projektové vlastnosti.
   RequiresXPACK kontrolovat ve vygenerovaném .XComMod. Build audit a přesné
   revize: docs/BUILD-AUDIT.md. X2ModBuildCommon ani Highlander nepřidány.
+- 2026-09-25 / W-D010: první Stargate mise použije běžný WotC lifecycle
+  `XComGameState_MissionSite`, ale vlastní mission-source template nastaví
+  `bRequiresSkyrangerTravel=false`. Výběr družstva tak vede přímo do taktické
+  mise bez letu Skyrangeru; nejde o vlastní ani automatický letecký boj.
+  Přesný kontrakt a připnuté zdroje: docs/MISSION-PATH.md.
+- 2026-09-25 / W-D011: návrat vojáků, zranění a vybavení ponechat standardnímu
+  `SquadTacticalToStrategyTransfer`. Vlastní výsledkový callback spravuje jen
+  Stargate progres a jednorázovou odměnu. `OnLoadedSavedGameToStrategy` smí
+  stav kontrolovat, ne znovu udělovat odměnu.
