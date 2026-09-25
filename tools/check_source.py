@@ -9,6 +9,15 @@ mod = root / 'StargateWOTC'
 ns = {'m': 'http://schemas.microsoft.com/developer/msbuild/2003'}
 project = ET.parse(mod / 'StargateWOTC.x2proj').getroot()
 assert project.findtext('m:PropertyGroup/m:Name', namespaces=ns) == 'StargateWOTC'
+assert project.attrib['ToolsVersion'] == '12.0'
+assert project.attrib['DefaultTargets'] == 'Default'
+assert project.findtext('m:PropertyGroup/m:SteamPublishID', namespaces=ns) == '0'
+imports = [node.attrib['Project'].replace(chr(92), '/') for node in project.findall('m:Import', ns)]
+assert imports == ['$(MSBuildLocalExtensionPath)/XCOM2.targets'], imports
+included = {node.attrib['Include'].replace(chr(92), '/') for node in project.findall('.//m:Content', ns)}
+required_content = {'Config/XComEditor.ini', 'Config/XComEngine.ini', 'Config/XComGame.ini',
+                    'Src/StargateWOTC/Classes/X2DownloadableContentInfo_StargateWOTC.uc'}
+assert required_content <= included, required_content - included
 for node in project.findall('.//m:Content', ns):
     assert (mod / node.attrib['Include'].replace(chr(92), '/')).is_file(), node.attrib
 def config(name):
@@ -22,6 +31,9 @@ assert config('XComGame.ini')[section]['DLCIdentifier'] == '"StargateWOTC"'
 solution = (root / 'StargateWOTC.XCOM_sln').read_text(encoding='utf-8')
 guid = project.findtext('m:PropertyGroup/m:ProjectGuid', namespaces=ns)
 assert guid in solution
+for configuration in ('Debug', 'Default'):
+    assert f'{configuration}|XCOM 2 = {configuration}|XCOM 2' in solution
+    assert f'{guid}.{configuration}|XCOM 2.Build.0 = {configuration}|XCOM 2' in solution
 for name in ['README.md', 'AGENTS.md', 'BUILD.md', 'STATUS.md', 'BACKLOG.md', 'DECISIONS.md', 'docs/BRIEF.md']:
     assert (root / name).is_file(), name
 json.loads((root / 'environment.example.json').read_text(encoding='utf-8'))

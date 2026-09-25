@@ -5,7 +5,7 @@
 | WSG-000 | DONE | Založit startér, ověřit formáty a trvale uložit zdroje. |
 | WSG-001 | BLOCKED | Zapsat verzi WotC, distribuci/OS a odpovídající SDK; čeká na instalaci uživatele. |
 | WSG-002 | BLOCKED | Sestavit a načíst loader, doložit novou i načtenou kampaň; zdroj připraven, chybí SDK/hra. |
-| WSG-003 | READY | Ověřit přesné balení WotC projektu a opakovatelnou build cestu v primárních zdrojích; výsledkem patch nebo konkrétní postup s verzí. |
+| WSG-003 | BLOCKED | Audit primárních zdrojů, build postup a kontrola výstupního balíčku připraveny (docs/BUILD-AUDIT.md); potvrzení kandidáta původním WotC SDK čeká na instalaci a T01. |
 | WSG-004A | READY | Určit konkrétní templaty a hooky pro vlastní misi přístupnou ze strategie; mapovat vstup/výstup a ukládaný stav. |
 | WSG-004B | BLOCKED | Implementovat nejmenší vlastní misi; po 002 a doloženém 004A. |
 | WSG-005 | BLOCKED | Čtyřčlenná sestava a vstup/extrakce představující bránu; po 004B. |
@@ -18,5 +18,6 @@
 | WSG-010 | BLOCKED | Reprodukovatelný testovací balíček první výpravy a instalace. |
 | WSG-011 | BLOCKED | Vyhodnotit proveditelnost pozdější obrany Země; až po výsledku M1. |
 
-Pořadí práce bez instalace: 003 → 004A → 008A → 009A.
-STATUS má první hlavní mechanickou prioritu 004A; příprava balení 003 jí může předcházet.
+Pořadí další práce bez instalace: 004A → 008A → 009A.
+003 má dokončený zdrojový audit; neopakovat jej bez SDK nebo nové stopy.
+Jakmile je dostupný WotC SDK, mají přednost 001, ověření 003 a loader 002.
