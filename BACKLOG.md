@@ -11,12 +11,12 @@
 | WSG-005 | BLOCKED | Čtyřčlenná sestava a vstup/extrakce představující bránu; po 004B. |
 | WSG-006 | BLOCKED | Artefakt, ústup, ztráta nosiče a výsledek mise; po 005. |
 | WSG-007 | BLOCKED | Jednorázová odměna a uložení/načtení, T10–T13; po 006. |
-| WSG-008A | READY | Zmapovat potřebné zásahy do Avengeru, Avataru a příběhových spouštěčů, s přesnými vazbami a zdroji. |
-| WSG-008B | BLOCKED | Provést nezbytné úpravy kampaně a ověřit T14; po 008A a loaderu. |
+| WSG-008A | DONE | Zdrojový audit Avenger/Avatar/příběh a přesný budoucí T14 v docs/CAMPAIGN-DEPENDENCIES.md; bez runtime změn, buildu a hry. |
+| WSG-008B | BLOCKED | Izolovat vlastní source/callbacky a ověřit soužití s původní kampaní podle docs/CAMPAIGN-DEPENDENCIES.md; po loaderu a implementaci mise, T14 dosud NOT_RUN. |
 | WSG-009A | READY | Doložit importní postup jednoduché vlastní brány do WotC SDK. |
 | WSG-009B | BLOCKED | Import a herní test brány; po 009A a funkčním M1. |
 | WSG-010 | BLOCKED | Reprodukovatelný testovací balíček první výpravy a instalace. |
 | WSG-011 | BLOCKED | Vyhodnotit proveditelnost pozdější obrany Země; až po výsledku M1. |
 
-Pořadí další práce bez instalace: 008A → 009A.
+Další práce bez instalace: 009A.
 Jakmile je dostupný WotC SDK, mají přednost 001, ověření 003 a loader 002.

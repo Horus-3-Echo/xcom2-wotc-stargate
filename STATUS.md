@@ -1,14 +1,14 @@
 # Stav — XCOM 2: War of the Chosen
 
-Aktualizováno: 2026-09-25, Europe/Prague.
+Aktualizováno: 2026-09-26, Europe/Prague.
 Fáze: M0, příprava načtení módu. Zdrojový startér: 0.1.0.
-Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 2. Běhy bez pokroku: 0.
+Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 3. Běhy bez pokroku: 0.
 Ruční migrace na GitHub se do plánovaných běhů nepočítá.
 
 - Připraveno: samostatný projekt, loader s logováním, konfigurace a testovací scénář.
-- Statická kontrola T00: poslední doložený výsledek PASS; 11 syntetických testů
-  kontroly balíčku PASS. Viz reports/2026-09-25-001.md. V tomto běhu se zdrojový
-  kód nezměnil a lokální kontrola nebyla opakována.
+- Statická kontrola T00: PASS dne 2026-09-26, pouze struktura zdrojů.
+  Zdrojový kód se nezměnil. Předchozích 11 syntetických testů kontroly balíčku
+  PASS (reports/2026-09-25-001.md); v tomto běhu nebyly opakovány.
 - Kompilace T01: NOT_RUN, hra/SDK a kompilátor nejsou v pracovním prostředí.
 - Hra T02–T04: NOT_RUN. Testovaná verze hry: nezjištěna.
 - Herní výprava T10–T14: neimplementována.
@@ -25,7 +25,12 @@ ConfirmMission -> LaunchTacticalBattle -> BattleData -> ProcessMissionResults`.
 Skyrangeru; standardní návrat přenáší vojáky, zranění a vybavení.
 Nejde o sestavenou nebo ve hře ověřenou expedici.
 
-Nejbližší práce bez instalace: WSG-008A, přesné vazby na Avenger, Avatar a
-příběhové spouštěče. Po zpřístupnění SDK mají přednost WSG-001, potvrzení
+WSG-008A: DONE jako zdrojový audit, viz docs/CAMPAIGN-DEPENDENCIES.md.
+Doloženy obecné události spouštějící tutorial, Avatar pending efekty při návratu,
+restart generování Doom a samostatný odpočet porážky. První M1 zachová
+infrastrukturu HQ a původní kampaň; vlastní mise oddělí source/callbacky.
+Budoucí T14 má přesný postup, zůstává NOT_RUN; WSG-008B je BLOCKED.
+
+Nejbližší práce bez instalace: WSG-009A, ověřený importní postup brány. Po zpřístupnění SDK mají přednost WSG-001, potvrzení
 WSG-003 a loader WSG-002.
 Vstup od uživatele: verze hry, platforma/větev, operační systém a dostupnost SDK.

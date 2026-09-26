@@ -29,3 +29,10 @@
   `SquadTacticalToStrategyTransfer`. Vlastní výsledkový callback spravuje jen
   Stargate progres a jednorázovou odměnu. `OnLoadedSavedGameToStrategy` smí
   stav kontrolovat, ne znovu udělovat odměnu.
+- 2026-09-26 / W-D012: omezený M1 ponechá HQ/Avenger infrastrukturu a původní
+  Avatar/AI. Vlastní source/callbacky nesmí převzít GoldenPath nebo
+  AvengerDefense vedlejší účinky; testovací mise se nabídne až po úvodu,
+  první test bez tutoriálu. Transportní příznak nezastavuje strategický čas
+  ani obecné příběhové události. Globální vypnutí kampaně není implementováno
+  ani vyžadováno pro tento omezený prototyp. Důkazy, omezení a T14:
+  docs/CAMPAIGN-DEPENDENCIES.md. Nejde o změnu společného zadání v1.
