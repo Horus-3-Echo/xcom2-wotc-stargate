@@ -36,3 +36,9 @@
   ani obecné příběhové události. Globální vypnutí kampaně není implementováno
   ani vyžadováno pro tento omezený prototyp. Důkazy, omezení a T14:
   docs/CAMPAIGN-DEPENDENCIES.md. Nejde o změnu společného zadání v1.
+- 2026-09-26 / W-D013: první vlastní model brány bude dekorativní StaticMesh
+  s oddělenou oblastí vstupu/extrakce z M1. FBX verzi neodhadovat; exportní
+  profil potvrdit zkušebním importem ve skutečném WotC editoru. Kontrolovat
+  průchozí otvor a výchozí blokování StaticMeshComponent. UPK zařadit do
+  Content až po jeho vytvoření, bez změny build systému a bez předbíhání M1.
+  Zdrojový kontrakt a přejímka T20: docs/GATE-IMPORT.md.

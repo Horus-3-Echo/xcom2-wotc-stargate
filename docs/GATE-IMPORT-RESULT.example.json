@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "task": "WSG-009B",
+  "test": "T20",
+  "status": "NOT_RUN",
+  "reason": "Cilovy WotC SDK, build a funkcni M1 nejsou dostupne.",
+  "source_commit": null,
+  "environment": {
+    "wotc_build": null,
+    "distribution_branch": null,
+    "os": null,
+    "sdk_build": null,
+    "editor_build": null,
+    "modeling_tool_version": null,
+    "fbx_exporter_version": null,
+    "fbx_format_version": null
+  },
+  "asset": {
+    "fbx_sha256": null,
+    "upk_sha256": null,
+    "actual_full_object_name": null,
+    "actual_output_relative_path": null,
+    "placement_method_and_reference": null
+  },
+  "import_options_observed": null,
+  "checks": {
+    "probe_import": "NOT_RUN",
+    "gate_import": "NOT_RUN",
+    "editor_reopen": "NOT_RUN",
+    "build_and_shaders": "NOT_RUN",
+    "game_render": "NOT_RUN",
+    "four_soldier_path_and_extract": "NOT_RUN",
+    "two_tactical_loads": "NOT_RUN",
+    "reward_T13": "NOT_RUN"
+  },
+  "evidence": {
+    "import_log": null,
+    "build_log": null,
+    "game_log": null,
+    "screenshots": [],
+    "save_identifiers": []
+  },
+  "first_failure": null
+}

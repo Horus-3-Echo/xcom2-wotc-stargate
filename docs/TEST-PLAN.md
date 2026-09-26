@@ -12,6 +12,7 @@
 | T12 | M1: ztráta týmu / nosiče | žádná neoprávněná odměna |
 | T13 | M1: opakované načtení a zpracování výsledku | odměna právě jednou |
 | T14 | M1: soužití s původní kampaní | docs/CAMPAIGN-DEPENDENCIES.md: start/návrat, dva loady a 24 strategických hodin; NOT_RUN do sestavení mise a diagnostiky |
+| T20 | WSG-009B: vlastní grafická brána | docs/GATE-IMPORT.md: import, restart editoru, build/shadery, hra, průchod čtyř vojáků a dva taktické loady; NOT_RUN |
 
 T00 nenahrazuje T01–T04. Pro počáteční loader zatím provádět jen T00–T04.
 Testy M1 se stanou vykonatelnými až po implementaci jednotlivých částí.
