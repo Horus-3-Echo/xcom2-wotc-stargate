@@ -1,26 +1,29 @@
 # Stav — XCOM 2: War of the Chosen
 
 Aktualizováno: 2026-10-01, Europe/Prague.
-Fáze: M0 loader 0.1.0 sestaven a ověřen ve hře; další krok M1.
-Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 4. Běhy bez pokroku: 0.
+Fáze: M1 zdrojový kandidát 0.2.0 připraven; čeká na build a T05.
+Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 5. Běhy bez pokroku: 0.
 Ruční migrace na GitHub se do plánovaných běhů nepočítá.
 
-- Připraveno: samostatný projekt, loader s logováním, konfigurace a testovací scénář.
-- Statická kontrola T00: poslední PASS v reports/2026-09-26-001.md,
-  pouze struktura zdrojů. Runtime zdroje/build konfigurace se nezměnily;
-  T00 ani dřívějších 11 syntetických testů nebylo v tomto běhu opakováno.
+- Připraveno: loader, vlastní `MissionSource_StargatePrototype`, ukládaný
+  jednorázový guard, factory jedné neexpirující `MissionSite`, mapování
+  `Reward_None -> SupplyLineRaid` a přesný T05.
+- Statická kontrola T00 a T00-MISSION: PASS v reports/2026-10-01-002.md.
+  Ověřuje jen strukturu, zahrnutí tříd, mapování a požadované zdrojové vazby.
+  Jedenáct syntetických testů kontroly balíčku také PASS.
 - Kontrola nového importního podkladu: názvy voleb a SHA primárních zdrojů,
   XML ukázka, JSON protokol a lokální odkazy PASS; není to import/build.
-- Kompilace T01: PASS, uživatelský rebuild původním WotC SDK 2026-09-30,
+- Kompilace T01 loaderu 0.1.0: PASS, uživatelský rebuild původním WotC SDK 2026-09-30,
   Default XCOM 2, 0 chyb / 8 varování; kontrola dodaného balíčku PASS.
-- Hra T02–T04: PASS, uživatelské logy 2026-10-01 a potvrzení bez problémů.
+- Kompilace kandidáta 0.2.0: NOT_RUN; cloudový běh nemá uživatelovo SDK.
+- Hra T02–T04 loaderu 0.1.0: PASS, uživatelské logy 2026-10-01 a potvrzení bez problémů.
   Načtení loaderu, nová kampaň/Gatecrasher/návrat a dva strategické loady.
 - Prostředí: Windows 11 Pro, Steam stabilní větev, WotC se všemi DLC (uživatel).
   Log: Version 8917, FxsChangelist 469133, Compiled Feb 22 2022.
   Steam build ID a přesná samostatná revize SDK nebyly dodány.
 - Důkazy a limity: reports/2026-10-01-001.md. Jde o ruční ověření,
   počet dokončených plánovaných běhů zůstává 4; T00 nebyl znovu spouštěn.
-- Herní výprava T10–T14: neimplementována.
+- T05 mise 0.2.0: NOT_RUN. Artefaktová výprava T10–T14 není implementována.
 - GitHub: `Horus-3-Echo/xcom2-wotc-stargate`, větev `main`, je pracovní autorita.
   Záznam migrace: reports/2026-09-25-github-migration.md.
 
@@ -34,6 +37,12 @@ ConfirmMission -> LaunchTacticalBattle -> BattleData -> ProcessMissionResults`.
 Skyrangeru; standardní návrat přenáší vojáky, zranění a vybavení.
 Nejde o sestavenou nebo ve hře ověřenou expedici.
 
+WSG-004B: BLOCKED po přípravě zdrojového kandidáta 0.2.0. `UpdateDLC`
+čeká na plný geoscape a mimo let/popup jednou vytvoří misi. Ukládaný
+`XComGameState_StargateProgram` brání duplikaci i po dokončení a loadu;
+vlastní source vypíná Skyranger travel a nepřebírá příběhové callbacky
+Supply Raid. Statická kontrola PASS, ale nový build a T05 jsou NOT_RUN.
+
 WSG-008A: DONE jako zdrojový audit, viz docs/CAMPAIGN-DEPENDENCIES.md.
 Doloženy obecné události spouštějící tutorial, Avatar pending efekty při návratu,
 restart generování Doom a samostatný odpočet porážky. První M1 zachová
@@ -45,11 +54,9 @@ FBX StaticMesh volby, actor/component a UPK v projektu. Přesná podporovaná
 verze FBX zůstává neověřená do zkušebního importu cílovým editorem.
 WSG-009B BLOCKED na importu a M1; SDK je u uživatele dostupné, T20 NOT_RUN. Model ani UPK dosud nevznikly.
 
-Další priorita: WSG-004B READY — implementovat nejmenší vlastní misi podle
-docs/MISSION-PATH.md a přijatých rozhodnutí. WSG-001/002/003 DONE v rozsahu
+Další priorita: odblokovat WSG-004B čerstvým Rebuild Solution kandidáta 0.2.0
+a provést T05 přesně podle BUILD.md. WSG-001/002/003 zůstávají DONE v rozsahu
 identifikace cílového prostředí a otestovaného loaderu; přesný Steam build ID/SDK
-revize zůstávají mezerou reprodukovatelnosti, nikoli blokací zdrojové implementace.
-SDK a hra jsou dostupné na počítači uživatele, nikoli automaticky plánovanému
-cloudovému běhu. Nové runtime změny vyžadují nový uživatelský build a test;
-nepřebírat PASS loaderu na budoucí misi, grafiku nebo odměny.
+revize jsou mezerou reprodukovatelnosti. SDK a hra jsou na počítači uživatele,
+nikoli automaticky cloudovému běhu. PASS loaderu se nepřebírá na novou misi.
 T10–T14 a T20 zůstávají NOT_RUN. Tento zápis není plánovaný vývojový běh.

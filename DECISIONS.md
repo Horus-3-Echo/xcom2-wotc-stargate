@@ -49,3 +49,16 @@
   k jeho počítači; další runtime změny vyžadují čerstvý build a herní test.
   InstallNewCampaign se naměřil i v menu: samotný marker nedokládá T03.
   Přejímka, prostředí a limity: reports/2026-10-01-001.md.
+
+- 2026-10-01 / W-D015: WSG-004B vytváří jednu neexpirující
+  `XComGameState_MissionSite` až z `UpdateDLC`, když existuje strategická
+  mapa, Avenger/Skyranger neletí a není otevřen `UIAlert`. Jde o stejný
+  geoscape hook a UI guard, který používá WotC DLC Day 60; jeho připnutý zdroj
+  má blob `df0e517f5742e995b9edbbadd02413471f04b5bc`. Vlastní ukládaný
+  `XComGameState_StargateProgram` zaručuje jedinou nabídku i po dokončení a
+  loadu; nalezenou starší aktivní misi reconciliuje místo duplikace.
+  `MissionSource_StargatePrototype + Reward_None` se mapuje na existující
+  rodinu `SupplyLineRaid`, jejíž WotC zdroj používá stejný reward i podmínku
+  úspěchu. Vlastní callbacky pouze uklidí odměnu/misi a nepřebírají POI,
+  Resistance activity, GoldenPath, Avatar ani UFO vedlejší účinky.
+  Jde o zdrojový kandidát 0.2.0; build a T05 jsou povinné před DONE.

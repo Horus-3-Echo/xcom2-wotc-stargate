@@ -7,6 +7,7 @@
 | T02 | Načtení módu a vlastní log | verze hry, povolené módy, log se značkou projektu |
 | T03 | Spuštění nové testovací kampaně | log nové kampaně, bez chyby loaderu |
 | T04 | Uložení/načtení testovací kampaně | log po načtení, žádná nová chyba |
+| T05 | WSG-004B: jedna prototypová mise a přímý round-trip | nový build; jedna značka na glóbu; čtyřčlenný squad select; přímý taktický load bez letu Skyrangeru; návrat; dva strategické loady bez duplikátu; celý log a screenshoty |
 | T10 | M1: artefakt a návrat | postup z FIRST-EXPEDITION.md, stavy týmu |
 | T11 | M1: ústup bez artefaktu | bez odměny, správní přeživší |
 | T12 | M1: ztráta týmu / nosiče | žádná neoprávněná odměna |
@@ -14,8 +15,9 @@
 | T14 | M1: soužití s původní kampaní | docs/CAMPAIGN-DEPENDENCIES.md: start/návrat, dva loady a 24 strategických hodin; NOT_RUN do sestavení mise a diagnostiky |
 | T20 | WSG-009B: vlastní grafická brána | docs/GATE-IMPORT.md: import, restart editoru, build/shadery, hra, průchod čtyř vojáků a dva taktické loady; NOT_RUN |
 
-T00 nenahrazuje T01–T04. Pro počáteční loader zatím provádět jen T00–T04.
-Testy M1 se stanou vykonatelnými až po implementaci jednotlivých částí.
+T00 nenahrazuje T01–T05. T01–T04 z 2026-10-01 platí jen pro loader 0.1.0;
+zdrojový kandidát 0.2.0 vyžaduje nový T01 a T05. Testy zbytku M1 se stanou
+vykonatelnými až po implementaci jednotlivých částí.
 Používat novou testovací kampaň a označené testovací pozice.
 
 Výsledek testu musí být PASS, FAIL nebo NOT_RUN. U NOT_RUN uvést konkrétní důvod.

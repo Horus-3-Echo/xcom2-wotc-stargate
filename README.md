@@ -1,9 +1,10 @@
 # Stargate — XCOM 2: War of the Chosen
 
 Loader 0.1.0 byl 2026-09-30 sestaven a 2026-10-01 ověřen ve WotC (T01–T04 PASS).
-Důkazy a omezení: reports/2026-10-01-001.md. Nejde ještě o hratelnou Stargate výpravu.
-Obsahuje první kód pro záznam načtení módu a životního cyklu hry, soubory
-projektu, backlog a testovací postup. Herní výprava ještě není implementovaná.
+Důkazy a omezení: reports/2026-10-01-001.md. Zdrojový kandidát 0.2.0 přidává
+jednorázově nabídnutou prototypovou misi s přímým přechodem bez Skyrangeru,
+ale dosud nebyl sestaven ani spuštěn. Nejde ještě o Stargate výpravu s
+artefaktem, bránou nebo trvalou odměnou.
 
 Začni v BUILD.md. Dostupná kontrola bez hry: `python tools/check_source.py`.
 Průběžný stav je v STATUS.md, jediný pracovní backlog v BACKLOG.md.
