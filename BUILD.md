@@ -56,6 +56,10 @@ automatické nahrávání ani vlastní letecký boj se neprovádí.
 
 ## T05 — prototypová mise 0.2.1
 
+Aktuální přejímka: build a vytvoření mise potvrzeny, otevření nabídky FAIL.
+Viz reports/2026-10-01-005.md. Stejný test neopakovat před opravou UI.
+Níže je cílový postup, nikoli potvrzení funkčnosti všech kroků.
+
 Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 0.2.1:
 
 1. Ulož celý Detailed build log a spusť
