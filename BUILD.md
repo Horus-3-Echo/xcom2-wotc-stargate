@@ -54,37 +54,43 @@ v auditu; nepřebírat jeho targets bez odpovídajícího build.ps1 a nástrojů
 Highlander není runtime požadavek loaderu. Žádné veřejné publikování,
 automatické nahrávání ani vlastní letecký boj se neprovádí.
 
-## T05 — prototypová mise 0.2.1
+## T05 — opravená prototypová mise 0.2.2
 
-Aktuální přejímka: build a vytvoření mise potvrzeny, otevření nabídky FAIL.
-Viz reports/2026-10-01-005.md. Stejný test neopakovat před opravou UI.
-Níže je cílový postup, nikoli potvrzení funkčnosti všech kroků.
+Verze 0.2.1 se sestavila a vytvořila misi, ale kliknutí neotevřelo UI; viz
+reports/2026-10-01-005.md. Kandidát 0.2.2 přidává vlastní podtřídu MissionSite,
+přímý dispatch do zděděného `SelectSquad`, migraci uložené základní mise a
+umístění do kontaktovaného regionu. Níže je nový test, nikoli potvrzení opravy.
 
-Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 0.2.1:
+Tento postup použij až po čerstvém úspěšném Rebuild Solution přesné revize 0.2.2:
 
 1. Ulož celý Detailed build log a spusť
    `python tools/check_package.py "<výstupní adresář StargateWOTC>"`.
    Očekávání: 0 chyb kompilátoru, PASS kontroly balíčku včetně mission-source
-   mapování a nový `Script/StargateWOTC.u`. Starý balíček 0.1.0 nestačí.
-2. Povol sestavený lokální mód ve WotC. Načti označený strategický save na
-   Avengeru po Gatecrasheru, otevři glóbus a nech proběhnout geoscape tick.
-   Očekávání: právě jedna značka `STARGATE PROTOTYPE` a log
-   `[WSG] prototype-mission-created id=<n> type=<typ>`.
-3. Ulož strategii, dvakrát ji přímo načti a pokaždé zkontroluj glóbus.
-   Očekávání: stále jedna značka; žádný další `prototype-mission-created`.
-   Pošli screenshot glóbu po prvním a druhém loadu.
-4. Vyber misi a ponech čtyřčlennou sestavu rané kampaně. Pošli screenshot
-   squad selectu. Potvrď start. Očekávej právě jeden řádek
+   mapování a nový `Script/StargateWOTC.u`. Balíček 0.2.1 nestačí.
+2. Povol sestavený lokální mód ve WotC. Přednostně načti save
+   `WSG-021-neklikatelna`, pokud skutečně existuje; jinak použij zachovaný
+   post-Gatecrasher save před vytvořením mise. Otevři glóbus a nech proběhnout
+   geoscape tick. Pro starý save očekávej právě jeden řádek
+   `[WSG] prototype-mission-migrated old=1807 new=<n> region=<n> type=<typ>`;
+   pro čistý save právě jeden `prototype-mission-created`. Na glóbu musí být
+   jediná značka `STARGATE PROTOTYPE` v již kontaktovaném regionu.
+3. Klikni na značku. Očekávej `[WSG] prototype-mission-selected id=<n>` a
+   otevření squad selectu. Ponech čtyřčlennou sestavu rané kampaně a pošli
+   screenshot glóbu před kliknutím i otevřeného squad selectu.
+4. Ulož strategii před startem, dvakrát ji přímo načti a pokaždé zkontroluj
+   glóbus. Očekávání: stále jedna klikatelná značka; žádný další
+   `prototype-mission-created` ani `prototype-mission-migrated`.
+5. Potvrď start. Očekávej právě jeden řádek
    `[WSG] prototype-mission-launch id=<n> squad=4 travel=direct type=<typ>`
    těsně před taktickým loadem a pozorováním potvrď, že neproběhla
    animace/let Skyrangeru. Log dokládá stav source a squad v `OnPreMission`,
    nikoli sám o sobě obrazovou sekvenci. Dokonči nebo prohraj vestavěný cíl
    Supply Raid a vrať se na Avenger.
-5. Očekávání návratu: standardní post-mission obrazovky a právě jeden řádek
+6. Očekávání návratu: standardní post-mission obrazovky a právě jeden řádek
    `[WSG] prototype-mission-result=success|failure id=<n>`. Po návratu save
    znovu načti; mise se nesmí znovu objevit. Dodej celý `Launch.log`, celý
-   build log, výstup kontroly balíčku a tři uvedené screenshoty. Při pádu
-   přidej screenshot chyby a uveď poslední úspěšný krok.
+   build log, výstup kontroly balíčku a uvedené screenshoty. Při pádu přidej
+   screenshot chyby a uveď poslední úspěšný krok.
 
 T05 dokládá pouze obal vlastní mise a standardní návrat. Nedokládá artefakt,
 vstupní/extrakční bránu, vlastní planetu ani jednorázovou trvalou odměnu.

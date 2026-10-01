@@ -24,6 +24,7 @@ required_content = {
     'Src/StargateWOTC/Classes/X2StargateMissionFactory.uc',
     'Src/StargateWOTC/Classes/X2StrategyElement_StargateMissionSource.uc',
     'Src/StargateWOTC/Classes/XComGameState_StargateProgram.uc',
+    'Src/StargateWOTC/Classes/XComGameState_MissionSite_Stargate.uc',
 }
 assert required_content <= included, required_content - included
 for node in project.findall('.//m:Content', ns):
@@ -49,21 +50,32 @@ loader = (classes / 'X2DownloadableContentInfo_StargateWOTC.uc').read_text(encod
 mission_source = (classes / 'X2StrategyElement_StargateMissionSource.uc').read_text(encoding='utf-8')
 factory = (classes / 'X2StargateMissionFactory.uc').read_text(encoding='utf-8')
 program_state = (classes / 'XComGameState_StargateProgram.uc').read_text(encoding='utf-8')
+mission_site = (classes / 'XComGameState_MissionSite_Stargate.uc').read_text(encoding='utf-8')
 assert 'static event UpdateDLC()' in loader
 assert 'static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSite MissionState)' in loader
 assert "EnsurePrototypeMission()" in loader
 assert "MissionState.Source != 'MissionSource_StargatePrototype'" in loader
 assert "XComHQ.Squad[SquadIndex].ObjectID != 0" in loader
 assert '" travel=" $ TravelMode' in loader
-assert 'templates-ready version=0.2.1' in loader
+assert 'templates-ready version=0.2.2' in loader
 assert "MissionSource_StargatePrototype" in mission_source
 assert "bRequiresSkyrangerTravel = false" in mission_source
 assert "WasMissionSuccessfulFn = OneStrategyObjectiveCompleted" in mission_source
 assert "BuildMission(MissionSource, MissionLocation, RegionRef, MissionRewards, true, false)" in factory
+assert "CreateNewStateObject(class'XComGameState_MissionSite_Stargate')" in factory
+assert 'XComGameState_MissionSite_Stargate(MissionState) == none' in factory
+assert 'OldMissionState.RemoveEntity(NewGameState)' in factory
+assert 'ProgramState.PrototypeMissionRef = MissionState.GetReference()' in factory
+assert 'RegionState.HaveMadeContact()' in factory
+assert 'prototype-mission-migrated old=' in factory
 assert "GeneratedMission.Mission.sType == \"\"" in factory
 assert "Reward_None" in factory
 assert "bPrototypeMissionCreated" in factory
 assert "class XComGameState_StargateProgram extends XComGameState_BaseObject" in program_state
+assert 'class XComGameState_MissionSite_Stargate extends XComGameState_MissionSite' in mission_site
+assert 'function MissionSelected()' in mission_site
+assert 'SelectSquad();' in mission_site
+assert 'HQPRES.OnMissionSelected' not in mission_site
 solution = (root / 'StargateWOTC.XCOM_sln').read_text(encoding='utf-8')
 guid = project.findtext('m:PropertyGroup/m:ProjectGuid', namespaces=ns)
 assert guid in solution
@@ -74,5 +86,5 @@ for name in ['README.md', 'AGENTS.md', 'BUILD.md', 'STATUS.md', 'BACKLOG.md', 'D
     assert (root / name).is_file(), name
 json.loads((root / 'environment.example.json').read_text(encoding='utf-8'))
 print('PASS T00: WSG project XML, source inclusion, solution and INI registration')
-print('PASS T00-MISSION: source/reward/family mapping, direct-travel source and persisted duplicate guard')
-print('NOT_RUN T01/T05: current 0.2.1 sources require a fresh WotC SDK build and game test')
+print('PASS T00-MISSION: custom UI dispatch, saved-site migration, contacted-region placement and persisted duplicate guard')
+print('NOT_RUN T01/T05: current 0.2.2 sources require a fresh WotC SDK build and game test')

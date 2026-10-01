@@ -1,13 +1,14 @@
 # Stav — XCOM 2: War of the Chosen
 
-Aktualizováno: 2026-10-01, Europe/Prague.
-Fáze: M1 0.2.1 sestaven a načten; T05 FAIL na otevření vytvořené mise.
-Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 7. Běhy bez pokroku: 0.
+Aktualizováno: 2026-10-02, Europe/Prague.
+Fáze: M1 zdrojový kandidát 0.2.2 opravuje T05 UI; čeká na build a retest.
+Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 8. Běhy bez pokroku: 0.
 Ruční migrace na GitHub se do plánovaných běhů nepočítá.
 
 - Připraveno: loader, vlastní `MissionSource_StargatePrototype`, ukládaný
   jednorázový guard, factory jedné neexpirující `MissionSite`, mapování
-  `Reward_None -> SupplyLineRaid`, předstartovní diagnostika a přesný T05.
+  `Reward_None -> SupplyLineRaid`, vlastní klikací MissionSite, migrace 0.2.1,
+  preference kontaktovaného regionu, předstartovní diagnostika a přesný T05.
 - Statická kontrola T00 a T00-MISSION: PASS v reports/2026-10-01-002.md.
   Ověřuje jen strukturu, zahrnutí tříd, mapování a požadované zdrojové vazby.
   Třináct syntetických testů kontroly balíčku PASS; od
@@ -19,6 +20,7 @@ Ruční migrace na GitHub se do plánovaných běhů nepočítá.
   Default XCOM 2, 0 chyb / 8 varování; kontrola dodaného balíčku PASS.
 - Kompilace 0.2.1: PASS u uživatele; mod compiler 0 chyb / 8 varování.
   Dodaný balíček prošel kontrolou a hra načetla verzi 0.2.1; viz report 005.
+- Kompilace 0.2.2: NOT_RUN; zdrojová oprava potřebuje čerstvý uživatelský build.
 - Hra T02–T04 loaderu 0.1.0: PASS, uživatelské logy 2026-10-01 a potvrzení bez problémů.
   Načtení loaderu, nová kampaň/Gatecrasher/návrat a dva strategické loady.
 - Prostředí: Windows 11 Pro, Steam stabilní větev, WotC se všemi DLC (uživatel).
@@ -29,6 +31,7 @@ Ruční migrace na GitHub se do plánovaných běhů nepočítá.
 - T05 mise 0.2.1: FAIL na otevření mise. Vytvoření PASS: id=1807,
   type=SupplyRaidATT. Uživatel vidí značku, kliknutí neotevře nabídku.
   Start/návrat a ochrana proti duplikaci po dvou loadech zatím NOT_RUN.
+  Kandidát 0.2.2 je staticky zkontrolován; jeho nový T05 je NOT_RUN.
   Artefaktová výprava T10–T14 není implementována.
 - GitHub: `Horus-3-Echo/xcom2-wotc-stargate`, větev `main`, je pracovní autorita.
   Záznam migrace: reports/2026-09-25-github-migration.md.
@@ -43,16 +46,18 @@ ConfirmMission -> LaunchTacticalBattle -> BattleData -> ProcessMissionResults`.
 Skyrangeru; standardní návrat přenáší vojáky, zranění a vybavení.
 Nejde o sestavenou nebo ve hře ověřenou expedici.
 
-WSG-004B: IN_PROGRESS — známá chyba otevírání mise vyžaduje opravu kódu. `UpdateDLC`
+WSG-004B: BLOCKED po přípravě zdrojové opravy 0.2.2. `UpdateDLC`
 čeká na plný geoscape a mimo let/popup jednou vytvoří misi. Ukládaný
 `XComGameState_StargateProgram` brání duplikaci i po dokončení a loadu;
 vlastní source vypíná Skyranger travel a nepřebírá příběhové callbacky
 Supply Raid. `OnPreMission` nově loguje ID, neprázdné členy `XComHQ.Squad`,
 režim transportu a typ mise. Statická kontrola a zpřísněná přejímka balíčku
-PASS; nový build i runtime vytvoření potvrzeny, T05 selhal v UI.
-Diagnóza: základní MissionSite.MissionSelected volá HQ OnMissionSelected,
-které větví pouze známé source; vlastní source nemá obsluhu. Nutno opravit
-UI cestu i pro již uloženou misi. Důkazy: reports/2026-10-01-005.md.
+PASS; build 0.2.1 i runtime vytvoření potvrzeny, T05 selhal v UI.
+Oprava: `XComGameState_MissionSite_Stargate.MissionSelected` volá zděděné
+`SelectSquad` přímo. Factory rozpozná starou základní misi, v jednom change
+state ji odstraní, vytvoří novou podtřídu s novým `Reward_None`, aktualizuje
+uloženou referenci a preferuje region s navázaným kontaktem. Build 0.2.2
+a nový T05 jsou NOT_RUN; WSG-004B proto není DONE ani NEEDS_GAME_TEST.
 
 WSG-008A: DONE jako zdrojový audit, viz docs/CAMPAIGN-DEPENDENCIES.md.
 Doloženy obecné události spouštějící tutorial, Avatar pending efekty při návratu,
@@ -65,10 +70,10 @@ FBX StaticMesh volby, actor/component a UPK v projektu. Přesná podporovaná
 verze FBX zůstává neověřená do zkušebního importu cílovým editorem.
 WSG-009B BLOCKED na importu a M1; SDK je u uživatele dostupné, T20 NOT_RUN. Model ani UPK dosud nevznikly.
 
-Další priorita: opravit WSG-004B — napojení vlastní mise na herní UI.
-Nečekat na další test stejné verze; uživatel již dodal nový build, balíček,
-runtime log a hlášení chyby. Ověřit také umístění mise v nekontaktovaném
-regionu a migraci existující MissionSite s uloženým jednorázovým guardem.
-Po opravě dodat konkrétní revizi a krátký postup nového buildu a opakování T05.
+Další priorita: čerstvý build kandidáta 0.2.2 a nový T05 podle BUILD.md.
+Neopakovat 0.2.1; uživatel již doložil její build i přesnou UI chybu.
+Retest má přednostně načíst uloženou neklikatelnou misi, ověřit jediný migrační
+marker, kontaktovaný region, kliknutí do squad selectu, dva loady bez duplikace,
+přímý start, návrat a stav po návratu.
 SDK/hra zůstávají na počítači uživatele. WSG-001/002/003 DONE beze změny,
-T10–T14/T20 NOT_RUN. Ruční zápis testu nezvyšuje počet plánovaných běhů (7).
+T10–T14/T20 NOT_RUN. Ruční zápis testu počet nezvýšil; tento uložený běh je osmý.

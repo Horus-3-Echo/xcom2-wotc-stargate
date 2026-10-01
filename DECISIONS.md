@@ -77,3 +77,13 @@
   po vytvoření battle data a před vložením start state do historie a otevřením
   taktické mapy. Marker zpřesní T05, ale nenahrazuje pozorování, že obrazová
   sekvence letu Skyrangeru skutečně neproběhla.
+
+- 2026-10-02 / W-D018: vlastní source nebude přidán do natvrdo zapsaného
+  `XComHQPresentationLayer.OnMissionSelected`. Kandidát 0.2.2 používá vlastní
+  podtřídu `XComGameState_MissionSite_Stargate`, jejíž `MissionSelected`
+  volá zděděné `SelectSquad` přímo. Tím zachová běžnou přípravu bitvy, ale
+  nepřebírá callback ani UI cizího Supply Raid source. Uložená základní mise
+  0.2.1 se nedá změnit na podtřídu na místě: factory ji v jednom change state
+  odstraní, vytvoří náhradu, aktualizuje persisted ref a zachová pravdivý guard.
+  Nové i migrované nabídky preferují již kontaktovaný region; pokud žádný
+  neexistuje, zůstává doložený obecný náhodný fallback. Build a T05 jsou povinné.

@@ -7,7 +7,7 @@
 | WSG-002 | DONE | Loader 0.1.0 sestaven, načten ve hře; nová kampaň, návrat na Avenger a dva loady doloženy. T01–T04 PASS; reports/2026-10-01-001.md. |
 | WSG-003 | DONE | Původní WotC SDK provedlo rebuild Default XCOM 2; 0 chyb, 8 DLC varování. Descriptor, registrace a skript dodaného balíčku ověřeny; reports/2026-10-01-001.md. |
 | WSG-004A | DONE | Cesta vlastní mise ze strategie, transport bez Skyrangeru, výsledek a ukládaný stav doloženy v docs/MISSION-PATH.md; jde o zdrojový audit bez buildu/hry. |
-| WSG-004B | IN_PROGRESS | 0.2.1 sestavena, balíček PASS, runtime vytvoření id=1807 / SupplyRaidATT PASS; T05 FAIL: kliknutí na misi neotevře nabídku. Opravit UI dispatch vlastního source včetně existující uložené mise/guardu; zkontrolovat region. Viz reports/2026-10-01-005.md. Nečekat na další test stejné verze. |
+| WSG-004B | BLOCKED | 0.2.1 sestavena a vytvoření id=1807 / SupplyRaidATT PASS, ale T05 FAIL v UI. Zdrojový kandidát 0.2.2 přidává vlastní MissionSite s přímým `SelectSquad`, jednorázovou migraci uložené základní mise/guardu a preferenci kontaktovaného regionu. Statické kontroly PASS; chybí čerstvý build 0.2.2 a nový T05 podle BUILD.md. |
 | WSG-005 | BLOCKED | Čtyřčlenná sestava a vstup/extrakce představující bránu; po 004B. |
 | WSG-006 | BLOCKED | Artefakt, ústup, ztráta nosiče a výsledek mise; po 005. |
 | WSG-007 | BLOCKED | Jednorázová odměna a uložení/načtení, T10–T13; po 006. |
@@ -18,7 +18,7 @@
 | WSG-010 | BLOCKED | Reprodukovatelný testovací balíček první výpravy a instalace. |
 | WSG-011 | BLOCKED | Vyhodnotit proveditelnost pozdější obrany Země; až po výsledku M1. |
 
-Další priorita: opravit UI otevírání WSG-004B, poté vyžádat nový build a T05 opravené revize.
+Další priorita: sestavit přesnou revizi kandidáta 0.2.2 a provést nový T05.
 SDK/hra běží u uživatele; cloudový běh nesmí tvrdit nový build/herní PASS bez
 nových protokolů.
 Ruční přejímka 2026-10-01 se nepočítá jako plánovaný vývojový běh.

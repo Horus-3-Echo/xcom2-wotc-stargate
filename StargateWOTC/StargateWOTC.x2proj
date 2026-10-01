@@ -24,6 +24,7 @@
     <Content Include="Src/StargateWOTC/Classes/X2StargateMissionFactory.uc" />
     <Content Include="Src/StargateWOTC/Classes/X2StrategyElement_StargateMissionSource.uc" />
     <Content Include="Src/StargateWOTC/Classes/XComGameState_StargateProgram.uc" />
+    <Content Include="Src/StargateWOTC/Classes/XComGameState_MissionSite_Stargate.uc" />
   </ItemGroup>
   <Import Project="$(MSBuildLocalExtensionPath)/XCOM2.targets" />
 </Project>
