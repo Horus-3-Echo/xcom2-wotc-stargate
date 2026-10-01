@@ -1,6 +1,7 @@
 # Stargate — XCOM 2: War of the Chosen
 
-Zdrojový startér 0.1.0, připravený 2026-09-25. Není to sestavený ani hratelný mód.
+Loader 0.1.0 byl 2026-09-30 sestaven a 2026-10-01 ověřen ve WotC (T01–T04 PASS).
+Důkazy a omezení: reports/2026-10-01-001.md. Nejde ještě o hratelnou Stargate výpravu.
 Obsahuje první kód pro záznam načtení módu a životního cyklu hry, soubory
 projektu, backlog a testovací postup. Herní výprava ještě není implementovaná.
 

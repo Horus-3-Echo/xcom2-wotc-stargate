@@ -42,3 +42,10 @@
   průchozí otvor a výchozí blokování StaticMeshComponent. UPK zařadit do
   Content až po jeho vytvoření, bez změny build systému a bez předbíhání M1.
   Zdrojový kontrakt a přejímka T20: docs/GATE-IMPORT.md.
+
+- 2026-10-01 / W-D014: původní build cesta loaderu potvrzena (T01–T04 PASS),
+  tím je splněna podmínka W-D005 pro tento loader. Pokračovat WSG-004B bez
+  výměny toolchainu. SDK/hra u uživatele neznamenají přístup cloudového běhu
+  k jeho počítači; další runtime změny vyžadují čerstvý build a herní test.
+  InstallNewCampaign se naměřil i v menu: samotný marker nedokládá T03.
+  Přejímka, prostředí a limity: reports/2026-10-01-001.md.

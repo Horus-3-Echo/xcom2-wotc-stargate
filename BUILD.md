@@ -1,6 +1,7 @@
 # Sestavení a první test WotC
 
-Zdrojový kandidát 0.1.0 nebyl kompilován. Cíl je pouze XCOM 2: War of the Chosen.
+Loader 0.1.0 byl sestaven původním SDK a ověřen ve hře; viz
+[ruční přejímka T01–T04](reports/2026-10-01-001.md). Cíl je pouze XCOM 2: War of the Chosen.
 Audit WSG-003 a neměnné odkazy: [docs/BUILD-AUDIT.md](docs/BUILD-AUDIT.md).
 
 ## Původní WotC ModBuddy — aktuální cesta
@@ -12,7 +13,9 @@ Audit WSG-003 a neměnné odkazy: [docs/BUILD-AUDIT.md](docs/BUILD-AUDIT.md).
    Projekt importuje původní `$(MSBuildLocalExtensionPath)/XCOM2.targets`.
    Název platformy `XCOM 2` v řešení je doložen i ve WotC projektu:
    sám o sobě neurčuje edici hry. Rozhoduje také použitý SDK/toolchain.
-3. Vyber Debug a Build Solution. Ulož celý text build výstupu, verze prostředí,
+3. Ověřená konfigurace je `Default XCOM 2`; použij Rebuild Solution.
+   Pro důkaz nastav Tools → Options → Projects and Solutions → Build and Run →
+   MSBuild project build output verbosity na Detailed. Ulož celý text build výstupu, verze prostředí,
    revizi zdrojů a výsledek kompilátoru. Pokud projekt nelze načíst/sestavit,
    vytvoř vedle něj prázdný projekt ve stejném WotC ModBuddy a porovnej
    jeho .x2proj, .XCOM_sln a import targets. Kandidáta neopravuj odhadem.
@@ -27,7 +30,9 @@ Audit WSG-003 a neměnné odkazy: [docs/BUILD-AUDIT.md](docs/BUILD-AUDIT.md).
    Descriptor ručně nepřidávej do zdrojů jako náhražku opravy build cesty.
 5. Teprve po T01 PASS povol mód ve WotC a spusť novou testovací kampaň.
    Očekávaný herní log: `[WSG] templates-ready version=0.1.0`
-   a `[WSG] new-campaign`, bez chyb načtení loaderu.
+   a `[WSG] new-campaign`, bez chyb načtení loaderu. Samotné `new-campaign`
+   není důkaz nové hratelné kampaně: naměřeno i během inicializace menu.
+   T03 dolož také přechodem do úvodní mise a návratem na Avenger.
 6. Ulož strategickou pozici, načti ji přímo do strategie, zopakuj načtení.
    Při každém návratu do strategie očekávej `[WSG] strategy-save-loaded`.
    Není to test jednorázového OnLoadedSavedGame ani důkaz uložené expedice.
