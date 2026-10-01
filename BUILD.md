@@ -54,9 +54,9 @@ v auditu; nepřebírat jeho targets bez odpovídajícího build.ps1 a nástrojů
 Highlander není runtime požadavek loaderu. Žádné veřejné publikování,
 automatické nahrávání ani vlastní letecký boj se neprovádí.
 
-## T05 — prototypová mise 0.2.0
+## T05 — prototypová mise 0.2.1
 
-Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 0.2.0:
+Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 0.2.1:
 
 1. Ulož celý Detailed build log a spusť
    `python tools/check_package.py "<výstupní adresář StargateWOTC>"`.
@@ -70,8 +70,11 @@ Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 
    Očekávání: stále jedna značka; žádný další `prototype-mission-created`.
    Pošli screenshot glóbu po prvním a druhém loadu.
 4. Vyber misi a ponech čtyřčlennou sestavu rané kampaně. Pošli screenshot
-   squad selectu. Potvrď start a zaznamenej, zda následuje přímo taktický
-   loading bez animace/letu Skyrangeru. Dokonči nebo prohraj vestavěný cíl
+   squad selectu. Potvrď start. Očekávej právě jeden řádek
+   `[WSG] prototype-mission-launch id=<n> squad=4 travel=direct type=<typ>`
+   těsně před taktickým loadem a pozorováním potvrď, že neproběhla
+   animace/let Skyrangeru. Log dokládá stav source a squad v `OnPreMission`,
+   nikoli sám o sobě obrazovou sekvenci. Dokonči nebo prohraj vestavěný cíl
    Supply Raid a vrať se na Avenger.
 5. Očekávání návratu: standardní post-mission obrazovky a právě jeden řádek
    `[WSG] prototype-mission-result=success|failure id=<n>`. Po návratu save

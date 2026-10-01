@@ -50,7 +50,12 @@ mission_source = (classes / 'X2StrategyElement_StargateMissionSource.uc').read_t
 factory = (classes / 'X2StargateMissionFactory.uc').read_text(encoding='utf-8')
 program_state = (classes / 'XComGameState_StargateProgram.uc').read_text(encoding='utf-8')
 assert 'static event UpdateDLC()' in loader
+assert 'static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSite MissionState)' in loader
 assert "EnsurePrototypeMission()" in loader
+assert "MissionState.Source != 'MissionSource_StargatePrototype'" in loader
+assert "XComHQ.Squad[SquadIndex].ObjectID != 0" in loader
+assert '" travel=" $ TravelMode' in loader
+assert 'templates-ready version=0.2.1' in loader
 assert "MissionSource_StargatePrototype" in mission_source
 assert "bRequiresSkyrangerTravel = false" in mission_source
 assert "WasMissionSuccessfulFn = OneStrategyObjectiveCompleted" in mission_source
@@ -70,4 +75,4 @@ for name in ['README.md', 'AGENTS.md', 'BUILD.md', 'STATUS.md', 'BACKLOG.md', 'D
 json.loads((root / 'environment.example.json').read_text(encoding='utf-8'))
 print('PASS T00: WSG project XML, source inclusion, solution and INI registration')
 print('PASS T00-MISSION: source/reward/family mapping, direct-travel source and persisted duplicate guard')
-print('NOT_RUN T01/T05: current 0.2.0 sources require a fresh WotC SDK build and game test')
+print('NOT_RUN T01/T05: current 0.2.1 sources require a fresh WotC SDK build and game test')

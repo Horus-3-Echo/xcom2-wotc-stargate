@@ -69,3 +69,11 @@
   `MissionSource_StargatePrototype + Reward_None -> SupplyLineRaid`.
   Bez tohoto INI může být bytecode přítomen, ale `BuildMission` nemá
   doloženou cestu k taktické definici; takový balíček nesmí dostat PASS.
+
+- 2026-10-01 / W-D017: kandidát 0.2.1 přidává pouze čtecí diagnostiku
+  `OnPreMission` pro vlastní source. Zapisuje ID mise, počet neprázdných
+  referencí v `XComGameState_HeadquartersXCom.Squad`, režim odvozený přímo
+  z `bRequiresSkyrangerTravel` a generovaný typ mise. WotC volá tento hook
+  po vytvoření battle data a před vložením start state do historie a otevřením
+  taktické mapy. Marker zpřesní T05, ale nenahrazuje pozorování, že obrazová
+  sekvence letu Skyrangeru skutečně neproběhla.
