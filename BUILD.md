@@ -23,8 +23,10 @@ Audit WSG-003 a neměnné odkazy: [docs/BUILD-AUDIT.md](docs/BUILD-AUDIT.md).
 4. Ze skutečného build logu zjisti výstupní adresář módu.
    Spusť `python tools/check_package.py "<výstupní adresář StargateWOTC>"`.
    Požaduj descriptor StargateWOTC.XComMod s [mod], Title=StargateWOTC,
-   publishedFileId=0 a RequiresXPACK=true, tři registrační INI a neprázdný
-   Script/StargateWOTC.u. Kontrola nic nepřepisuje ani neopravuje.
+   publishedFileId=0 a RequiresXPACK=true, tři registrační INI,
+   `Config/XComMissionSources.ini` s přesným mapováním
+   `MissionSource_StargatePrototype + Reward_None -> SupplyLineRaid` a
+   neprázdný `Script/StargateWOTC.u`. Kontrola nic nepřepisuje ani neopravuje.
    Je to kontrola uspořádání, nikoli důkaz platného bytecode či úspěšného buildu.
    T01 PASS vyžaduje zvlášť úspěšný čerstvý build log; starý .u soubor nestačí.
    Descriptor ručně nepřidávej do zdrojů jako náhražku opravy build cesty.
@@ -58,8 +60,8 @@ Tento postup použij až po čerstvém úspěšném Rebuild Solution kandidáta 
 
 1. Ulož celý Detailed build log a spusť
    `python tools/check_package.py "<výstupní adresář StargateWOTC>"`.
-   Očekávání: 0 chyb kompilátoru, PASS kontroly balíčku a nový
-   `Script/StargateWOTC.u`. Starý balíček 0.1.0 nestačí.
+   Očekávání: 0 chyb kompilátoru, PASS kontroly balíčku včetně mission-source
+   mapování a nový `Script/StargateWOTC.u`. Starý balíček 0.1.0 nestačí.
 2. Povol sestavený lokální mód ve WotC. Načti označený strategický save na
    Avengeru po Gatecrasheru, otevři glóbus a nech proběhnout geoscape tick.
    Očekávání: právě jedna značka `STARGATE PROTOTYPE` a log

@@ -23,6 +23,10 @@ def check_package(mod):
         ('Config/XComEngine.ini', 'Engine.ScriptPackages', '+NonNativePackages', 'StargateWOTC'),
         ('Config/XComGame.ini', 'StargateWOTC.X2DownloadableContentInfo_StargateWOTC',
          'DLCIdentifier', '"StargateWOTC"'),
+        ('Config/XComMissionSources.ini', 'XComGame.XComTacticalMissionManager',
+         '+arrSourceRewardMissionTypes',
+         '(MissionSource="MissionSource_StargatePrototype", RewardType="Reward_None", '
+         'MissionFamily="SupplyLineRaid")'),
     ]
     parsed = {}
     for filename, section, key, value in expected:
@@ -57,7 +61,7 @@ def main():
     for error in errors:
         print(f'FAIL PACKAGE: {error}')
     if not errors:
-        print('PASS PACKAGE: WSG metadata, registration and nonempty script file')
+        print('PASS PACKAGE: WSG metadata, registration, mission mapping and nonempty script file')
     print('LIMIT: file presence does not prove compilation, freshness, loadability or gameplay')
     return 1 if errors else 0
 

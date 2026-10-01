@@ -13,7 +13,8 @@ class PackageTests(unittest.TestCase):
         self.mod = Path(self.temp.name)
         source = Path(__file__).resolve().parents[1] / 'StargateWOTC'
         (self.mod / 'Config').mkdir()
-        for name in ('XComEditor.ini', 'XComEngine.ini', 'XComGame.ini'):
+        for name in ('XComEditor.ini', 'XComEngine.ini', 'XComGame.ini',
+                     'XComMissionSources.ini'):
             (self.mod / 'Config' / name).write_bytes((source / 'Config' / name).read_bytes())
         self.descriptor = self.mod / 'StargateWOTC.XComMod'
         self.metadata = '[mod]\npublishedFileId=0\nTitle=StargateWOTC\nRequiresXPACK=true\n'
@@ -60,6 +61,21 @@ class PackageTests(unittest.TestCase):
 
     def test_missing_config(self):
         (self.mod / 'Config/XComGame.ini').unlink()
+        self.assertTrue(check_package(self.mod))
+
+    def test_missing_mission_source_mapping(self):
+        path = self.mod / 'Config/XComMissionSources.ini'
+        path.unlink()
+        self.assertTrue(check_package(self.mod))
+
+    def test_wrong_mission_source_mapping(self):
+        path = self.mod / 'Config/XComMissionSources.ini'
+        path.write_text(
+            '[XComGame.XComTacticalMissionManager]\n'
+            '+arrSourceRewardMissionTypes=(MissionSource="MissionSource_StargatePrototype", '
+            'RewardType="Reward_None", MissionFamily="WrongFamily")\n',
+            encoding='utf-8',
+        )
         self.assertTrue(check_package(self.mod))
 
     def test_source_is_not_built_package(self):

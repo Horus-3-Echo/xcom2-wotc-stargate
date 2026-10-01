@@ -62,3 +62,10 @@
   úspěchu. Vlastní callbacky pouze uklidí odměnu/misi a nepřebírají POI,
   Resistance activity, GoldenPath, Avatar ani UFO vedlejší účinky.
   Jde o zdrojový kandidát 0.2.0; build a T05 jsou povinné před DONE.
+
+- 2026-10-01 / W-D016: přejímka balíčku WSG-004B musí vedle descriptoru,
+  registračních INI a neprázdného skriptu ověřit také přítomnost
+  `Config/XComMissionSources.ini` a přesnou trojici
+  `MissionSource_StargatePrototype + Reward_None -> SupplyLineRaid`.
+  Bez tohoto INI může být bytecode přítomen, ale `BuildMission` nemá
+  doloženou cestu k taktické definici; takový balíček nesmí dostat PASS.

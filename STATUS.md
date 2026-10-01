@@ -2,7 +2,7 @@
 
 Aktualizováno: 2026-10-01, Europe/Prague.
 Fáze: M1 zdrojový kandidát 0.2.0 připraven; čeká na build a T05.
-Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 5. Běhy bez pokroku: 0.
+Ruční zaváděcí běhy: 1. Dokončené plánované běhy: 6. Běhy bez pokroku: 0.
 Ruční migrace na GitHub se do plánovaných běhů nepočítá.
 
 - Připraveno: loader, vlastní `MissionSource_StargatePrototype`, ukládaný
@@ -10,7 +10,9 @@ Ruční migrace na GitHub se do plánovaných běhů nepočítá.
   `Reward_None -> SupplyLineRaid` a přesný T05.
 - Statická kontrola T00 a T00-MISSION: PASS v reports/2026-10-01-002.md.
   Ověřuje jen strukturu, zahrnutí tříd, mapování a požadované zdrojové vazby.
-  Jedenáct syntetických testů kontroly balíčku také PASS.
+  Třináct syntetických testů kontroly balíčku PASS; od
+  reports/2026-10-01-003.md kontrola odmítne i chybějící nebo nesprávné
+  `XComMissionSources.ini`.
 - Kontrola nového importního podkladu: názvy voleb a SHA primárních zdrojů,
   XML ukázka, JSON protokol a lokální odkazy PASS; není to import/build.
 - Kompilace T01 loaderu 0.1.0: PASS, uživatelský rebuild původním WotC SDK 2026-09-30,
@@ -41,7 +43,8 @@ WSG-004B: BLOCKED po přípravě zdrojového kandidáta 0.2.0. `UpdateDLC`
 čeká na plný geoscape a mimo let/popup jednou vytvoří misi. Ukládaný
 `XComGameState_StargateProgram` brání duplikaci i po dokončení a loadu;
 vlastní source vypíná Skyranger travel a nepřebírá příběhové callbacky
-Supply Raid. Statická kontrola PASS, ale nový build a T05 jsou NOT_RUN.
+Supply Raid. Statická kontrola a zpřísněná přejímka balíčku PASS, ale nový
+build a T05 jsou NOT_RUN.
 
 WSG-008A: DONE jako zdrojový audit, viz docs/CAMPAIGN-DEPENDENCIES.md.
 Doloženy obecné události spouštějící tutorial, Avatar pending efekty při návratu,
